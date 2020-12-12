@@ -55,8 +55,7 @@ python train_IADN.py
 ## II. Test the IADN model 
 
 ####  Test the Retraining Model With Your Own Dataset (TEST_IADN.PY)
-Download the commonly used testing rain dataset (R100H, R100L, TEST100, TEST1200, TEST2800) ([Google Drive](https://drive.google.com/file/d/1H6kigSTD0mucIoXOhpXZn3UqYytpS4TX/view?usp=sharing)), and the test samples and the labels of joint tasks form (BDD350, COCO350, BDD150) ([Baidu Cloud](https://pan.baidu.com/s/1xA4kgSyi9vZxVAeGRvc1tw), (**Password:0e7o**)). 
-In addition, the test results of other competing models can be downloaded from here ([TEST1200, TEST100](https://drive.google.com/file/d/11nKUDRWJuapT8rogr6FARCMJF3rJoJtE/view?usp=sharing), [R100H, R100L](https://drive.google.com/file/d/1An5OChbJZnkhlbwGIDQ7wDh-xpkbELp9/view?usp=sharing)).
+Download the commonly used testing rain dataset (R100H, R100L, TEST100, TEST1200, TEST2800) ([Google Drive](https://drive.google.com/file/d/1H6kigSTD0mucIoXOhpXZn3UqYytpS4TX/view?usp=sharing)), and the test samples and the results of other low-level vision tasks form (dehazing, low-light). In addition, the test results of other competing models can be downloaded from here ([TEST1200, TEST100](https://drive.google.com/file/d/11nKUDRWJuapT8rogr6FARCMJF3rJoJtE/view?usp=sharing), [R100H, R100L](https://drive.google.com/file/d/1An5OChbJZnkhlbwGIDQ7wDh-xpkbELp9/view?usp=sharing)).
 
 Put your dataset in './test/test_data/* ' ( *denotes one of the tasks in [deraing, dehazing, and low-light enhancement]).
 
