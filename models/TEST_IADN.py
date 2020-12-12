@@ -10,19 +10,17 @@ from RGBtoYCBCR import *
 from ssim_loss import *
 
 class Model:
-    def __init__(self, x, x_rain, is_training, batch_size, spt):
+    def __init__(self, x_rain, is_training, batch_size, spt):
         self.spt = spt
         self.batch_size = batch_size
         n,w,h,c = x_rain.get_shape().as_list()
         self.width = w//4
         self.height = h//4
         self.stage_num = 10
-        x_rain_noise = x_rain + tf.random_normal(shape=tf.shape(x_rain), stddev= 3 / 255.0)
-        self.rain_res = self.generator(x_rain_noise, is_training, False)
+        self.rain_res = self.generator(x_rain, is_training, tf.AUTO_REUSE)
         #self.rain_real = x_rain - x
         self.imitation = x_rain - self.rain_res# + self.res_infor
-        self.all_loss, self.derain_loss, self.SSIM_LOSS = self.inference_losses(x, self.imitation)
-		
+        
     def generator(self, rain, is_training, reuse):
         with tf.variable_scope('generator', reuse=reuse):
 
@@ -135,7 +133,7 @@ class Model:
         self.g_variables = tf.get_collection(
             tf.GraphKeys.TRAINABLE_VARIABLES, scope='generator')
         return rain_fea
-		
+        
     def RCABE(self, input, reduction):
         b, w, h, channel = input.get_shape()  # (B, W, H, C)
         f = tf.layers.conv2d(input, channel, 3, padding='same', activation=lrelu)  # (B, W, H, C)tf.nn.relu
@@ -148,6 +146,7 @@ class Model:
         x = tf.multiply(f, x)  # (B, W, H, C)
         x = tf.add(input, x)
         return x
+        
         
     def RCAB(self, input, reduction):
         b, w, h, channel = input.get_shape()  # (B, W, H, C)
@@ -280,23 +279,5 @@ class Model:
                                         kernel_size=[1, 1])
         #bn = slim.batch_norm(pointwise_conv, scope=sc+'/pw_batch_norm')
         return pointwise_conv
-        
-    def inference_losses(self, x, imitation):
-            
-        def inference_mse_loss(frame_hr, frame_sr):
-            content_base_loss = tf.reduce_mean(tf.sqrt((frame_hr - frame_sr) ** 2+(1e-3)**2))
-            return tf.reduce_mean(content_base_loss)
 
-        derain_loss = inference_mse_loss(x, imitation)
-        #rain_loss = inference_mse_loss(rain_real, rain_res)
-        x_edge = self.Laplacian(x)
-        imitation_edge = self.Laplacian(imitation)
-        edge_loss = inference_mse_loss(x_edge, imitation_edge)
-        y_channel_x = RGBtoYCBCR(x)
-        y_channel_imi = RGBtoYCBCR(imitation)
-        SSIM_LOSS = tf_ssim(y_channel_x, y_channel_imi)
-
-        all_loss = 1*derain_loss - 0.1*SSIM_LOSS+ 0.2*edge_loss #0.05
-
-        return (all_loss, derain_loss, SSIM_LOSS)
 
