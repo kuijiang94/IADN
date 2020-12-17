@@ -1,7 +1,7 @@
 # Decomposition Makes Better Rain Removal: An Improved Attention-guided Deraining Network (IADN)
 
 This is an implementation of the IADN model proposed in the paper
-([Decomposition Makes Better Rain Removal: An Improved Attention-guided Deraining Network])
+([Decomposition Makes Better Rain Removal: An Improved Attention-guided Deraining Network](https://ieeexplore.ieee.org/document/9294056))
 with TensorFlow.
 
 # Requirements
@@ -72,9 +72,13 @@ The deraining results will be in './test/test_data/*/IADN'.
 
 # Citation
 ```
-@InProceedings{Kui_2020_IADN,
-	author = {Jiang, Kui and Wang, Zhongyuan and Yi, Peng and Han, Zhen and Lu, Tao and Huang, Baojin and Jiang, Junjun},
-	title = {Decomposition Makes Better Rain Removal: An Improved Attention-guided Deraining Network},
-	year = {2020}
-}
+@ARTICLE{9294056,
+  author={K. {Jiang} and Z. {Wang} and P. {Yi} and C. {Chen} and Z. {Han} and T. {Lu} and B. {Huang} and J. {Jiang}},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
+  title={Decomposition Makes Better Rain Removal: An Improved Attention-guided Deraining Network}, 
+  year={2020},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TCSVT.2020.3044887}}
 ```
