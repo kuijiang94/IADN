@@ -81,4 +81,11 @@ The deraining results will be in './test/test_data/*/IADN'.
   number={},
   pages={1-1},
   doi={10.1109/TCSVT.2020.3044887}}
+@InProceedings{Kui_2020_CVPR,
+	author = {Jiang, Kui and Wang, Zhongyuan and Yi, Peng and Chen, Chen and Huang, Baojin and Luo, Yimin and Ma, Jiayi and Jiang, Junjun},
+	title = {Multi-Scale Progressive Fusion Network for Single Image Deraining},
+	booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+	month = {June},
+	year = {2020}
+}
 ```
